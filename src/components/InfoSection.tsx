@@ -164,7 +164,7 @@ const InfoSection = () => {
               <h2 className="mt-2 font-bold">SEO Services</h2>
 
               <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
-                Improve your site's visibility and ranking.
+                Improve your site&apos;s visibility and ranking.
               </p>
             </a>
           </div>
