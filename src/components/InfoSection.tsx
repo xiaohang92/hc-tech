@@ -1,5 +1,4 @@
 // src/components/InfoSection.tsx
-
 import React from "react";
 
 const InfoSection = () => {
@@ -9,21 +8,27 @@ const InfoSection = () => {
         <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16">
           <div className="mx-auto max-w-lg text-center lg:mx-0 ltr:lg:text-left rtl:lg:text-right">
             <h2 className="text-3xl font-bold sm:text-4xl">
-              Build Your Dream Website
+              Your Vision, Our Expertise
             </h2>
 
             <p className="mt-4 text-gray-600">
-              At our software company, we specialize in creating stunning,
-              responsive websites tailored to your needs. Whether you need a
-              simple WordPress site or a complex web application using PHP,
-              MySQL, and Next.js, we have the expertise to bring your vision to
-              life.
+              Transform your ideas into reality with our{" "}
+              <strong className="text-indigo-700">
+                expert web development
+              </strong>
+              . From sleek{" "}
+              <strong className="text-indigo-700">WordPress</strong> designs to
+              powerful applications using{" "}
+              <strong className="text-indigo-700">PHP</strong>,{" "}
+              <strong className="text-indigo-700">MySQL</strong>, and{" "}
+              <strong className="text-indigo-700">Next.js</strong>, we deliver
+              solutions that drive success.
             </p>
 
             <a
               href="#"
               className="mt-8 inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400">
-              Get Started Today
+              Start Your Project
             </a>
           </div>
 
@@ -51,7 +56,7 @@ const InfoSection = () => {
               <h2 className="mt-2 font-bold">Web Development</h2>
 
               <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
-                Custom web development using modern technologies.
+                Crafting modern websites with cutting-edge technology.
               </p>
             </a>
 
@@ -78,7 +83,7 @@ const InfoSection = () => {
               <h2 className="mt-2 font-bold">Database Management</h2>
 
               <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
-                Secure and scalable database solutions.
+                Secure and scalable solutions for your data needs.
               </p>
             </a>
 
@@ -105,7 +110,7 @@ const InfoSection = () => {
               <h2 className="mt-2 font-bold">WordPress Development</h2>
 
               <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
-                Professional and customizable WordPress solutions.
+                Customizable and professional WordPress solutions.
               </p>
             </a>
 
@@ -132,7 +137,7 @@ const InfoSection = () => {
               <h2 className="mt-2 font-bold">E-commerce Solutions</h2>
 
               <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
-                Build and grow your online store.
+                Build and scale your online store with ease.
               </p>
             </a>
 
@@ -159,7 +164,7 @@ const InfoSection = () => {
               <h2 className="mt-2 font-bold">SEO Services</h2>
 
               <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
-                Optimize your site for better search engine rankings.
+                Improve your site's visibility and ranking.
               </p>
             </a>
           </div>

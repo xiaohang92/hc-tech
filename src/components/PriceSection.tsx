@@ -223,7 +223,7 @@ const PriceSection = () => {
             </h2>
 
             <p className="mt-2 text-gray-700">
-              Best for those who need a customizable and easy-to-manage website.
+              Best for customizable and easy-to-manage website.
             </p>
 
             <p className="mt-2 sm:mt-4">
