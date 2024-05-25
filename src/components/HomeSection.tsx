@@ -1,6 +1,7 @@
 // src/components/HomeSection.tsx
 
 import React from "react";
+import Link from "next/link";
 
 const HomeSection = () => {
   return (
@@ -27,17 +28,17 @@ const HomeSection = () => {
         </p>
 
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <a
-            className="block w-full rounded bg-indigo-700 px-12 py-3 text-sm font-medium text-white shadow hover:bg-indigo-800 focus:outline-none focus:ring active:bg-indigo-900 sm:w-auto"
-            href="/contactus">
-            Get Started
-          </a>
+          <Link href="/contactus">
+            <span className="block w-full rounded bg-indigo-700 px-12 py-3 text-sm font-medium text-white shadow hover:bg-indigo-800 focus:outline-none focus:ring active:bg-indigo-900 sm:w-auto">
+              Get Started
+            </span>
+          </Link>
 
-          <a
-            className="block w-full rounded px-12 py-3 text-sm font-medium text-indigo-700 shadow hover:text-indigo-800 focus:outline-none focus:ring active:text-indigo-900 sm:w-auto"
-            href="#">
-            Learn More
-          </a>
+          <Link href="/learnmore">
+            <span className="block w-full rounded px-12 py-3 text-sm font-medium text-indigo-700 shadow hover:text-indigo-800 focus:outline-none focus:ring active:text-indigo-900 sm:w-auto">
+              Learn More
+            </span>
+          </Link>
         </div>
       </div>
     </div>

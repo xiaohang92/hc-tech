@@ -1,4 +1,5 @@
 // src/components/PriceSection.tsx
+import Link from "next/link";
 import React from "react";
 
 const PriceSection = () => {
@@ -25,11 +26,11 @@ const PriceSection = () => {
               </span>
             </p>
 
-            <a
-              className="mt-4 block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 sm:mt-6"
-              href="#">
-              Get Started
-            </a>
+            <Link href="/product">
+              <span className="mt-4 block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 sm:mt-6">
+                Get Started
+              </span>
+            </Link>
           </div>
 
           <div className="p-6 sm:px-8">

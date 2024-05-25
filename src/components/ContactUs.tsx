@@ -1,54 +1,56 @@
-//src/components/ContactUs.tsx
 "use client";
+// src/components/ContactUs.tsx
 import React, { useState } from "react";
+import PopUpAlert from "./PopUpAlert"; // Adjust the import path if necessary
+import ErrorAlert from "./ErrorAlert"; // Adjust the import path if necessary
 
-type FormData = {
-  name: string;
-  email: string;
-  phone: string;
-  product: string;
-  message: string;
-};
+const ContactUs = () => {
+  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [errorVisible, setErrorVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-const ContactUS = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    product: "",
-    message: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+  const handleProductSelect = (product: string) => {
+    setSelectedProduct(product);
   };
 
-  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, product: e.target.id });
-  };
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    setIsSubmitting(true);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
     try {
       const response = await fetch("/api/send", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        body: formData,
       });
 
-      const result = await response.json();
-      if (result.error) {
-        console.error(result.error);
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error:", errorData.error);
+        setErrorMessage(
+          errorData.error || "Failed to send enquiry. Please try again."
+        ); // Set the error message
+        setErrorVisible(true); // Show the error alert
       } else {
-        console.log("Email sent successfully", result);
+        setAlertVisible(true); // Show the success alert
       }
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error:", error);
+      setErrorMessage("An unexpected error occurred. Please try again."); // Set the error message
+      setErrorVisible(true); // Show the error alert
+    } finally {
+      setIsSubmitting(false);
     }
+  };
+
+  const handleCloseAlert = () => {
+    setAlertVisible(false);
+  };
+
+  const handleCloseError = () => {
+    setErrorVisible(false);
   };
 
   return (
@@ -86,7 +88,7 @@ const ContactUS = () => {
           </div>
 
           <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-            <form className="space-y-4" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} method="post" className="space-y-4">
               <div>
                 <label className="sr-only" htmlFor="name">
                   Name
@@ -96,8 +98,8 @@ const ContactUS = () => {
                   placeholder="Name"
                   type="text"
                   id="name"
-                  value={formData.name}
-                  onChange={handleChange}
+                  name="name"
+                  required
                 />
               </div>
 
@@ -111,8 +113,8 @@ const ContactUS = () => {
                     placeholder="Email address"
                     type="email"
                     id="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    name="email"
+                    required
                   />
                 </div>
 
@@ -125,8 +127,8 @@ const ContactUS = () => {
                     placeholder="Phone Number"
                     type="tel"
                     id="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
+                    name="phone"
+                    required
                   />
                 </div>
               </div>
@@ -136,17 +138,18 @@ const ContactUS = () => {
                   <label
                     htmlFor="LandingPage"
                     className={`block w-full cursor-pointer rounded-lg border p-3 ${
-                      formData.product === "LandingPage"
-                        ? "border-black bg-black text-white"
-                        : "border-gray-200 text-gray-600"
-                    }`}>
+                      selectedProduct === "LandingPage"
+                        ? "bg-indigo-200 border-indigo-700"
+                        : ""
+                    }`}
+                    onClick={() => handleProductSelect("LandingPage")}>
                     <input
                       className="sr-only"
                       id="LandingPage"
                       type="radio"
                       name="product"
-                      checked={formData.product === "LandingPage"}
-                      onChange={handleRadioChange}
+                      value="LandingPage"
+                      required
                     />
                     <span className="text-sm"> Landing Page </span>
                   </label>
@@ -156,17 +159,18 @@ const ContactUS = () => {
                   <label
                     htmlFor="FullWebsite"
                     className={`block w-full cursor-pointer rounded-lg border p-3 ${
-                      formData.product === "FullWebsite"
-                        ? "border-black bg-black text-white"
-                        : "border-gray-200 text-gray-600"
-                    }`}>
+                      selectedProduct === "FullWebsite"
+                        ? "bg-indigo-200 border-indigo-700"
+                        : ""
+                    }`}
+                    onClick={() => handleProductSelect("FullWebsite")}>
                     <input
                       className="sr-only"
                       id="FullWebsite"
                       type="radio"
                       name="product"
-                      checked={formData.product === "FullWebsite"}
-                      onChange={handleRadioChange}
+                      value="FullWebsite"
+                      required
                     />
                     <span className="text-sm"> Full Website </span>
                   </label>
@@ -176,17 +180,18 @@ const ContactUS = () => {
                   <label
                     htmlFor="WordPress"
                     className={`block w-full cursor-pointer rounded-lg border p-3 ${
-                      formData.product === "WordPress"
-                        ? "border-black bg-black text-white"
-                        : "border-gray-200 text-gray-600"
-                    }`}>
+                      selectedProduct === "WordPress"
+                        ? "bg-indigo-200 border-indigo-700"
+                        : ""
+                    }`}
+                    onClick={() => handleProductSelect("WordPress")}>
                     <input
                       className="sr-only"
                       id="WordPress"
                       type="radio"
                       name="product"
-                      checked={formData.product === "WordPress"}
-                      onChange={handleRadioChange}
+                      value="WordPress"
+                      required
                     />
                     <span className="text-sm"> WordPress </span>
                   </label>
@@ -202,18 +207,29 @@ const ContactUS = () => {
                   placeholder="Message"
                   rows={8}
                   id="message"
-                  value={formData.message}
-                  onChange={handleChange}></textarea>
+                  name="message"
+                  required></textarea>
               </div>
 
               <div className="mt-4">
                 <button
                   type="submit"
-                  className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto">
-                  Send Enquiry
+                  className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+                  disabled={isSubmitting}>
+                  {isSubmitting ? "Sending..." : "Send Enquiry"}
                 </button>
               </div>
             </form>
+            {alertVisible && (
+              <PopUpAlert
+                title="Success"
+                content="Your enquiry has been sent successfully!"
+                onClose={handleCloseAlert}
+              />
+            )}
+            {errorVisible && (
+              <ErrorAlert message={errorMessage} onClose={handleCloseError} />
+            )}
           </div>
         </div>
       </div>
@@ -221,4 +237,4 @@ const ContactUS = () => {
   );
 };
 
-export default ContactUS;
+export default ContactUs;

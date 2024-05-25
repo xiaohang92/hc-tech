@@ -1,5 +1,6 @@
 // src/components/InfoSection.tsx
 import React from "react";
+import Link from "next/link";
 
 const InfoSection = () => {
   return (
@@ -25,11 +26,11 @@ const InfoSection = () => {
               solutions that drive success.
             </p>
 
-            <a
-              href="#"
-              className="mt-8 inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400">
-              Start Your Project
-            </a>
+            <Link href="/contactus">
+              <span className="mt-8 inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400">
+                Start Your Project
+              </span>
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">

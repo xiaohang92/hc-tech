@@ -1,4 +1,3 @@
-// src/components/EmailTemplate.tsx
 import React from "react";
 import { Html } from "@react-email/html";
 import { Hr } from "@react-email/hr";
