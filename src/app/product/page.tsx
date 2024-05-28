@@ -1,12 +1,14 @@
 // src/app/product/page.tsx
-import React from "react";
+import React, { Suspense } from "react";
 import ProductSection from "@/components/ProductSection";
 import Footer from "@/components/Footer";
 
-export default function page() {
+export default function Page() {
   return (
     <div>
-      <ProductSection />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ProductSection />
+      </Suspense>
       <Footer />
     </div>
   );
