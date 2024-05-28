@@ -1,3 +1,4 @@
+// src/app/product/page.tsx
 import React from "react";
 import ProductSection from "@/components/ProductSection";
 import Footer from "@/components/Footer";

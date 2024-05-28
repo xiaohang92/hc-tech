@@ -76,11 +76,37 @@ const ContactUs = () => {
             </p>
 
             <div className="mt-8">
-              <a
-                href="tel:+6012-5261536"
-                className="text-2xl font-bold text-pink-600">
-                +6012-5261536
-              </a>
+              <div className="text-xl font-bold flex items-center gap-4">
+                <a
+                  href="tel:+6011-11266316"
+                  className="text-2xl font-bold text-pink-600">
+                  +6011-11266316
+                </a>
+                <span className="  text-gray-600">(Mr. Calvin)</span>
+              </div>
+              <div className="text-xl font-bold flex items-center gap-4">
+                <a
+                  href="tel:+6012-5261536"
+                  className="text-2xl font-bold text-pink-600">
+                  +6012-5261536
+                </a>
+                <span className="  text-gray-600">(Mr. Chuah)</span>
+              </div>
+              {/* Email */}
+              <div className="text-xl font-bold flex items-center gap-4">
+                <a
+                  href="mailto:calvin@hctechsolution.com"
+                  className="text-lg font-bold text-indigo-700">
+                  calvin@hctechsolution.com
+                </a>
+              </div>{" "}
+              <div className="text-xl font-bold flex items-center gap-4">
+                <a
+                  href="mailto:weihang@hctechsolution.com"
+                  className="text-lg font-bold text-indigo-700">
+                  weihang@hctechsolution.com
+                </a>
+              </div>
               <address className="mt-2 not-italic">
                 Butterworth, Penang, Malaysia
               </address>

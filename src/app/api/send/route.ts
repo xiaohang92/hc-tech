@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
     const data = await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: "weihang@hctechsolution.com",
+      to: ["calvin@hctechsolution.com", "weihang@hctechsolution.com"],
       subject: "New Contact Form Submission",
       //   react: EmailTemplate({ name, email, phone, product, message }),
       html: htmlContent,
