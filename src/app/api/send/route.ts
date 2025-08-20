@@ -2,10 +2,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: NextRequest) {
   try {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: "Server misconfiguration: RESEND_API_KEY is not set." },
+        { status: 500 }
+      );
+    }
+    const resend = new Resend(apiKey);
     const formData = await req.formData();
     const name = formData.get("name");
     const email = formData.get("email");

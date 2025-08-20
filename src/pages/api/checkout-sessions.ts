@@ -1,9 +1,6 @@
 // src/pages/api/checkout-sessions.ts
 import { NextApiRequest, NextApiResponse } from "next";
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY as string);
 import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,6 +13,12 @@ export default async function handler(
       if (!priceId) {
         throw new Error("Price ID is missing.");
       }
+
+      const resendApiKey = process.env.RESEND_API_KEY;
+      if (!resendApiKey) {
+        throw new Error("Server misconfiguration: RESEND_API_KEY is not set.");
+      }
+      const resend = new Resend(resendApiKey);
 
       // Send email to clerk with client's mobile number
       await resend.emails.send({
@@ -32,6 +35,13 @@ export default async function handler(
         `,
       });
 
+      const stripeSecret = process.env.STRIPE_SECRET_KEY as string | undefined;
+      if (!stripeSecret) {
+        throw new Error(
+          "Server misconfiguration: STRIPE_SECRET_KEY is not set."
+        );
+      }
+      const stripe = require("stripe")(stripeSecret);
       const session = await stripe.checkout.sessions.create({
         line_items: [
           {

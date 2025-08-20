@@ -54,7 +54,7 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="bg-gray-100">
+    <section className="bg-gray-100 pt-8">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
           <div className="lg:col-span-2 lg:py-12">
@@ -75,53 +75,56 @@ const ContactUs = () => {
               with expert precision and creativity.
             </p>
 
-            <div className="mt-8">
-              <div className="text-xl font-bold flex items-center gap-4">
+            <div className="mt-8 space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                 <a
                   href="tel:+6011-11266316"
-                  className="text-2xl font-bold text-pink-600">
+                  className="text-2xl font-bold text-pink-600 hover:text-pink-700 transition-colors">
                   +6011-11266316
                 </a>
-                <span className="  text-gray-600">(Mr. Calvin)</span>
+                <span className="text-gray-600 font-medium text-lg">
+                  (Mr. Calvin)
+                </span>
               </div>
-              <div className="text-xl font-bold flex items-center gap-4">
+
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                 <a
                   href="tel:+6012-5261536"
-                  className="text-2xl font-bold text-pink-600">
+                  className="text-2xl font-bold text-pink-600 hover:text-pink-700 transition-colors">
                   +6012-5261536
                 </a>
-                <span className="  text-gray-600">(Mr. Chuah)</span>
+                <span className="text-gray-600 font-medium text-lg">
+                  (Mr. Chuah)
+                </span>
               </div>
+
               {/* Email */}
-              <div className="text-xl font-bold flex items-center gap-4">
+              <div className="pt-2">
                 <a
                   href="mailto:calvin@hctechsolution.com"
-                  className="text-lg font-bold text-indigo-700">
+                  className="text-lg font-bold text-indigo-700 hover:text-indigo-800 transition-colors block mb-2">
                   calvin@hctechsolution.com
                 </a>
-              </div>{" "}
-              <div className="text-xl font-bold flex items-center gap-4">
                 <a
                   href="mailto:weihang@hctechsolution.com"
-                  className="text-lg font-bold text-indigo-700">
+                  className="text-lg font-bold text-indigo-700 hover:text-indigo-800 transition-colors block">
                   weihang@hctechsolution.com
                 </a>
               </div>
-              <address className="mt-2 not-italic">
-                Butterworth, Penang, Malaysia
-              </address>
             </div>
           </div>
 
           <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-            <form onSubmit={handleSubmit} method="post" className="space-y-4">
+            <form onSubmit={handleSubmit} method="post" className="space-y-6">
               <div>
-                <label className="sr-only" htmlFor="name">
+                <label
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                  htmlFor="name">
                   Name
                 </label>
                 <input
-                  className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                  placeholder="Name"
+                  className="w-full rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none hover:border-gray-300"
+                  placeholder="Your Name"
                   type="text"
                   id="name"
                   name="name"
@@ -129,14 +132,16 @@ const ContactUs = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
-                  <label className="sr-only" htmlFor="email">
+                  <label
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                    htmlFor="email">
                     Email
                   </label>
                   <input
-                    className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                    placeholder="Email address"
+                    className="w-full rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none hover:border-gray-300"
+                    placeholder="Your Email Address"
                     type="email"
                     id="email"
                     name="email"
@@ -145,12 +150,14 @@ const ContactUs = () => {
                 </div>
 
                 <div>
-                  <label className="sr-only" htmlFor="phone">
+                  <label
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                    htmlFor="phone">
                     Phone
                   </label>
                   <input
-                    className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                    placeholder="Phone Number"
+                    className="w-full rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none hover:border-gray-300"
+                    placeholder="Your Phone Number"
                     type="tel"
                     id="phone"
                     name="phone"
@@ -159,90 +166,120 @@ const ContactUs = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
-                <div>
-                  <label
-                    htmlFor="LandingPage"
-                    className={`block w-full cursor-pointer rounded-lg border p-3 ${
-                      selectedProduct === "LandingPage"
-                        ? "bg-indigo-200 border-indigo-700"
-                        : ""
-                    }`}
-                    onClick={() => handleProductSelect("LandingPage")}>
-                    <input
-                      className="sr-only"
-                      id="LandingPage"
-                      type="radio"
-                      name="product"
-                      value="LandingPage"
-                      required
-                    />
-                    <span className="text-sm"> Landing Page </span>
-                  </label>
-                </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Product Interest
+                </label>
+                <div className="grid grid-cols-1 gap-3 text-center sm:grid-cols-3">
+                  <div>
+                    <label
+                      htmlFor="LandingPage"
+                      className={`block w-full cursor-pointer rounded-lg border-2 p-3 transition-all duration-200 ${
+                        selectedProduct === "LandingPage"
+                          ? "bg-indigo-50 border-indigo-500 text-indigo-700 shadow-md"
+                          : "border-gray-200 hover:border-indigo-300 hover:bg-gray-50"
+                      }`}
+                      onClick={() => handleProductSelect("LandingPage")}>
+                      <input
+                        className="sr-only"
+                        id="LandingPage"
+                        type="radio"
+                        name="product"
+                        value="LandingPage"
+                        required
+                      />
+                      <span className="text-sm font-medium">Landing Page</span>
+                    </label>
+                  </div>
 
-                <div>
-                  <label
-                    htmlFor="FullWebsite"
-                    className={`block w-full cursor-pointer rounded-lg border p-3 ${
-                      selectedProduct === "FullWebsite"
-                        ? "bg-indigo-200 border-indigo-700"
-                        : ""
-                    }`}
-                    onClick={() => handleProductSelect("FullWebsite")}>
-                    <input
-                      className="sr-only"
-                      id="FullWebsite"
-                      type="radio"
-                      name="product"
-                      value="FullWebsite"
-                      required
-                    />
-                    <span className="text-sm"> Full Website </span>
-                  </label>
-                </div>
+                  <div>
+                    <label
+                      htmlFor="FullWebsite"
+                      className={`block w-full cursor-pointer rounded-lg border-2 p-3 transition-all duration-200 ${
+                        selectedProduct === "FullWebsite"
+                          ? "bg-indigo-50 border-indigo-500 text-indigo-700 shadow-md"
+                          : "border-gray-200 hover:border-indigo-300 hover:bg-gray-50"
+                      }`}
+                      onClick={() => handleProductSelect("FullWebsite")}>
+                      <input
+                        className="sr-only"
+                        id="FullWebsite"
+                        type="radio"
+                        name="product"
+                        value="FullWebsite"
+                        required
+                      />
+                      <span className="text-sm font-medium">Full Website</span>
+                    </label>
+                  </div>
 
-                <div>
-                  <label
-                    htmlFor="WordPress"
-                    className={`block w-full cursor-pointer rounded-lg border p-3 ${
-                      selectedProduct === "WordPress"
-                        ? "bg-indigo-200 border-indigo-700"
-                        : ""
-                    }`}
-                    onClick={() => handleProductSelect("WordPress")}>
-                    <input
-                      className="sr-only"
-                      id="WordPress"
-                      type="radio"
-                      name="product"
-                      value="WordPress"
-                      required
-                    />
-                    <span className="text-sm"> WordPress </span>
-                  </label>
+                  <div>
+                    <label
+                      htmlFor="WordPress"
+                      className={`block w-full cursor-pointer rounded-lg border-2 p-3 transition-all duration-200 ${
+                        selectedProduct === "WordPress"
+                          ? "bg-indigo-50 border-indigo-500 text-indigo-700 shadow-md"
+                          : "border-gray-200 hover:border-indigo-300 hover:bg-gray-50"
+                      }`}
+                      onClick={() => handleProductSelect("WordPress")}>
+                      <input
+                        className="sr-only"
+                        id="WordPress"
+                        type="radio"
+                        name="product"
+                        value="WordPress"
+                        required
+                      />
+                      <span className="text-sm font-medium">WordPress</span>
+                    </label>
+                  </div>
                 </div>
               </div>
 
               <div>
-                <label className="sr-only" htmlFor="message">
+                <label
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                  htmlFor="message">
                   Message
                 </label>
                 <textarea
-                  className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                  placeholder="Message"
-                  rows={8}
+                  className="w-full rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none hover:border-gray-300 resize-none"
+                  placeholder="Tell us about your project requirements..."
+                  rows={6}
                   id="message"
                   name="message"
                   required></textarea>
               </div>
 
-              <div className="mt-4">
+              <div className="pt-2">
                 <button
                   type="submit"
-                  className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+                  className="inline-block w-full rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-3 font-medium text-white transition-all duration-200 hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : "Send Enquiry"}
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24">
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    "Send Enquiry"
+                  )}
                 </button>
               </div>
             </form>

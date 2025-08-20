@@ -2,8 +2,8 @@ import React from "react";
 import Image from "next/image";
 export default function LearnMoreSection() {
   return (
-    <section>
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <section className="pt-8">
+      <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="max-w-3xl">
           <h2 className="text-3xl font-bold sm:text-4xl leading-tight">
             <span className="block">Transforming Ideas into Reality</span>
@@ -13,7 +13,7 @@ export default function LearnMoreSection() {
           </h2>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+        <div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
           <div className="relative h-64 overflow-hidden sm:h-80 lg:h-full">
             <Image
               alt="Team working on a project"
@@ -24,7 +24,7 @@ export default function LearnMoreSection() {
             />
           </div>
 
-          <div className="lg:py-16">
+          <div className="lg:py-12">
             <article className="space-y-4 text-gray-600">
               <p>
                 At <strong>H&C Tech Solution</strong>, we believe in the power
@@ -38,7 +38,7 @@ export default function LearnMoreSection() {
                 Our journey began with a simple goal: to help businesses of all
                 sizes harness the potential of the <strong>web</strong>. From
                 dynamic websites to robust e-commerce platforms, we deliver
-                solutions that reflect your brand’s unique story.
+                solutions that reflect your brand&apos;s unique story.
               </p>
 
               <p>
