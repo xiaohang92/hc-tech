@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "/public/hc-tech-logo-simple.svg"; // Updated to use simpler logo
+import logo from "/public/ht-tech-logo-with-word-no-background.png";
 
 const Footer = () => {
   return (
@@ -18,7 +18,7 @@ const Footer = () => {
                   width={160}
                   height={48}
                   alt="H&C Tech Solution Logo"
-                  className="brightness-0 invert"
+                  className="brightness-0 invert w-40 md:w-56 h-auto"
                 />
               </Link>
               <p className="text-gray-300 mb-6 max-w-md">

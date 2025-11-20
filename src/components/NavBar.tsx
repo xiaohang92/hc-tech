@@ -1,7 +1,7 @@
 // src/components/NavBar.tsx
 "use client";
 import Image from "next/image";
-import logo from "/public/hc-tech-logo-simple.svg"; // Updated to use simpler logo
+import logo from "/public/ht-tech-logo-with-word.jpeg";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -29,6 +29,7 @@ const NavBar: React.FC = () => {
             height={42}
             alt="H&C Tech Solution Logo"
             priority
+            className="w-auto h-10"
           />
         </Link>
 
