@@ -73,10 +73,24 @@ export default function Home() {
               "https://www.facebook.com/hctechsolution",
               "https://www.linkedin.com/company/hctechsolution",
             ],
-            serviceArea: {
-              "@type": "Country",
-              name: "Malaysia",
-            },
+            serviceArea: [
+              {
+                "@type": "City",
+                name: "Butterworth",
+              },
+              {
+                "@type": "State",
+                name: "Penang",
+              },
+              {
+                "@type": "City",
+                name: "Kuala Lumpur",
+              },
+              {
+                "@type": "Country",
+                name: "Malaysia",
+              },
+            ],
             hasOfferCatalog: {
               "@type": "OfferCatalog",
               name: "Web Development Services",
