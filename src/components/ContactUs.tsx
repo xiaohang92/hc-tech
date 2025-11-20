@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import PopUpAlert from "./PopUpAlert"; // Adjust the import path if necessary
 import ErrorAlert from "./ErrorAlert"; // Adjust the import path if necessary
+import { motion } from "framer-motion";
 
 const ContactUs = () => {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
@@ -57,7 +58,13 @@ const ContactUs = () => {
     <section className="bg-gray-100 pt-8">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
-          <div className="lg:col-span-2 lg:py-12">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-2 lg:py-12"
+          >
             <h2 className="text-3xl font-bold sm:text-4xl">
               Ready to Get Started?
             </h2>
@@ -112,9 +119,15 @@ const ContactUs = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12"
+          >
             <form onSubmit={handleSubmit} method="post" className="space-y-6">
               <div>
                 <label
@@ -252,10 +265,13 @@ const ContactUs = () => {
               </div>
 
               <div className="pt-2">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   type="submit"
                   className="inline-block w-full rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-3 font-medium text-white transition-all duration-200 hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                  disabled={isSubmitting}>
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center">
                       <svg
@@ -280,7 +296,7 @@ const ContactUs = () => {
                   ) : (
                     "Send Enquiry"
                   )}
-                </button>
+                </motion.button>
               </div>
             </form>
             {alertVisible && (
@@ -293,7 +309,7 @@ const ContactUs = () => {
             {errorVisible && (
               <ErrorAlert message={errorMessage} onClose={handleCloseError} />
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,13 +1,22 @@
 // src/components/PriceSection.tsx
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import { products } from "@/lib/products";
+import { motion } from "framer-motion";
 
 const PriceSection = () => {
   return (
     <section className="bg-white py-20 pt-24">
       <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl font-bold text-gray-900 sm:text-5xl mb-6">
             Transparent Pricing, Exceptional Value
           </h2>
@@ -15,17 +24,23 @@ const PriceSection = () => {
             Choose the perfect package for your business needs. All plans
             include our commitment to quality, performance, and ongoing support.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((product, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -10 }}
               className={`relative rounded-2xl border-2 p-8 transition-all duration-300 hover:shadow-2xl ${
                 index === 1
                   ? "border-indigo-600 bg-gradient-to-br from-indigo-50 to-purple-50 scale-105 shadow-xl"
                   : "border-gray-200 bg-white hover:border-indigo-300 hover:scale-105"
-              }`}>
+              }`}
+            >
               {index === 1 && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span className="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
@@ -66,7 +81,8 @@ const PriceSection = () => {
                         className="h-5 w-5 text-indigo-600 mt-0.5 mr-3 flex-shrink-0"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke="currentColor">
+                        stroke="currentColor"
+                      >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -81,14 +97,17 @@ const PriceSection = () => {
               </div>
 
               <Link href={`/product?name=${product.name}`}>
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   className={`w-full py-4 px-6 rounded-lg font-semibold transition-all duration-200 ${
                     index === 1
                       ? "bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg hover:shadow-xl"
                       : "bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-600 hover:text-white"
-                  }`}>
+                  }`}
+                >
                   {index === 1 ? "Get Started Now" : "Choose This Plan"}
-                </button>
+                </motion.button>
               </Link>
 
               {index === 1 && (
@@ -96,11 +115,17 @@ const PriceSection = () => {
                   🎉 Limited time: Free SEO setup included!
                 </p>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="text-center mt-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-center mt-16"
+        >
           <div className="bg-gray-50 rounded-2xl p-8 max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Need a Custom Solution?
@@ -110,12 +135,16 @@ const PriceSection = () => {
               create a tailored solution that fits your budget and timeline.
             </p>
             <Link href="/contactus">
-              <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
                 Schedule Free Consultation
-              </button>
+              </motion.button>
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -6,6 +6,7 @@ import eCommerce from "/public/e-commerce.jpg";
 import PopUpAlert from "./PopUpAlert"; // Adjust the import path if necessary
 import ErrorAlert from "./ErrorAlert"; // Adjust the import path if necessary
 import { getProductByName } from "@/lib/products";
+import { motion } from "framer-motion";
 
 export default function ProductSection() {
   const [alertVisible, setAlertVisible] = useState(false);
@@ -47,7 +48,13 @@ export default function ProductSection() {
   return (
     <div className="min-h-screen w-full py-16 pt-24 bg-gray-100">
       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center lg:justify-between lg:gap-5">
-        <div className="w-full lg:w-1/2 h-full mb-6 lg:mb-0 flex lg:flex-grow">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="w-full lg:w-1/2 h-full mb-6 lg:mb-0 flex lg:flex-grow"
+        >
           <Image
             src={eCommerce}
             alt="Web Development Services"
@@ -57,9 +64,15 @@ export default function ProductSection() {
             className="object-contain rounded-md"
             priority
           />
-        </div>
+        </motion.div>
 
-        <div className="w-full h-full bg-white p-6 rounded-md shadow-md flex ">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="w-full h-full bg-white p-6 rounded-md shadow-md flex "
+        >
           <div className="flex flex-col justify-between">
             <form action="/api/checkout-sessions" method="POST">
               <input type="hidden" name="priceId" value={product.priceId} />
@@ -117,12 +130,15 @@ export default function ProductSection() {
                   />
                 </div>
               </div>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 type="submit"
                 role="link"
-                className="mt-4 px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition text-center">
+                className="mt-4 px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition text-center"
+              >
                 Pay booking fee of $100 to get started
-              </button>
+              </motion.button>
             </form>
             {alertVisible && (
               <PopUpAlert
@@ -135,7 +151,7 @@ export default function ProductSection() {
               <ErrorAlert message={errorMessage} onClose={handleCloseError} />
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
