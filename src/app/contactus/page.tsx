@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   description:
     "Get in touch with H&C Tech Solution for professional web development services. Contact us for custom websites, e-commerce solutions, and digital transformation in Penang, Malaysia.",
   keywords: [
+    "contact hc tech",
+    "hnctechsolution contact",
+    "hc tech solution contact",
     "contact H&C Tech Solution",
     "web development contact",
     "Penang web developer contact",
@@ -62,6 +65,7 @@ const ContactUs = () => {
             mainEntity: {
               "@type": "Organization",
               name: "H&C Tech Solution",
+              alternateName: ["HC Tech", "HNCTechSolution", "hc tech", "H&C Tech"],
               contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+6011-11266316",

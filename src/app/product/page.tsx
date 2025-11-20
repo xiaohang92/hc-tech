@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   description:
     "Explore our comprehensive web development services including custom websites, e-commerce solutions, WordPress development, and digital transformation services in Malaysia.",
   keywords: [
+    "hc tech services",
+    "hnctechsolution services",
+    "hc tech solution products",
     "web development services",
     "custom website development",
     "e-commerce solutions",
@@ -67,6 +70,7 @@ export default function Page() {
                 provider: {
                   "@type": "Organization",
                   name: "H&C Tech Solution",
+                  alternateName: ["HC Tech", "HNCTechSolution", "hc tech"],
                 },
                 areaServed: "Malaysia",
               },

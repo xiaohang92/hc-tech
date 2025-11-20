@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   description:
     "Transform your business with H&C Tech Solution's expert web development services. Custom websites, e-commerce solutions, and digital transformation in Penang, Malaysia.",
   keywords: [
+    "hc tech",
+    "hnctechsolution",
+    "hc tech solution",
+    "h&c tech",
     "web development Malaysia",
     "website design Penang",
     "e-commerce development",
@@ -54,6 +58,7 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "H&C Tech Solution",
+            alternateName: ["HC Tech", "HNCTechSolution", "hc tech", "H&C Tech"],
             url: "https://hctechsolution.com",
             logo: "https://hctechsolution.com/ht-tech-logo-with-word.jpeg",
             description: "Professional web development services in Malaysia",

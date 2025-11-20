@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description:
     "Learn about H&C Tech Solution, a leading web development company in Penang, Malaysia. Discover our expertise in custom websites, e-commerce, and digital transformation.",
   keywords: [
+    "hc tech",
+    "hnctechsolution",
+    "about hc tech",
     "about H&C Tech Solution",
     "web development company Malaysia",
     "Penang web developer",
@@ -61,6 +64,7 @@ const LearnMore = () => {
             mainEntity: {
               "@type": "Organization",
               name: "H&C Tech Solution",
+              alternateName: ["HC Tech", "HNCTechSolution", "hc tech", "H&C Tech"],
               description: "Professional web development services in Malaysia",
               foundingDate: "2024",
               location: {

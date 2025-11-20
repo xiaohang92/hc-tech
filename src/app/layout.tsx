@@ -12,8 +12,12 @@ export const metadata: Metadata = {
     template: "%s | H&C Tech Solution",
   },
   description:
-    "H&C Tech Solution is a leading web development company specializing in custom websites, e-commerce solutions, and digital transformation. Get professional web development services in Malaysia.",
+    "H&C Tech Solution (HC Tech, HNCTechSolution) is a leading web development company specializing in custom websites, e-commerce solutions, and digital transformation. Get professional web development services in Malaysia.",
   keywords: [
+    "hc tech",
+    "hnctechsolution",
+    "hc tech solution",
+    "h&c tech",
     "web development",
     "website design",
     "e-commerce development",

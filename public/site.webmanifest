@@ -1,7 +1,7 @@
 {
-  "name": "H&C Tech Solution",
-  "short_name": "H&C Tech",
-  "description": "Professional web development services in Malaysia",
+  "name": "H&C Tech Solution • HC Tech • HNCTechSolution",
+  "short_name": "HC Tech",
+  "description": "HC Tech (HNCTechSolution) - Professional web development services in Malaysia. Custom websites, e-commerce, and digital transformation.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -20,5 +20,7 @@
     }
   ],
   "categories": ["business", "productivity", "technology"],
-  "lang": "en-US"
+  "lang": "en-US",
+  "scope": "/",
+  "keywords": ["hc tech", "hnctechsolution", "hc tech solution", "web development", "Malaysia"]
 }
