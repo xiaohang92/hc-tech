@@ -46,6 +46,11 @@ const NavBar: React.FC = () => {
             About Us
           </Link>
           <Link
+            href="/portfolio"
+            className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">
+            Portfolio
+          </Link>
+          <Link
             href="/contactus"
             className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">
             Contact
@@ -104,6 +109,12 @@ const NavBar: React.FC = () => {
               className="block py-3 text-gray-700 hover:text-indigo-600 font-medium transition-colors border-b border-gray-100"
               onClick={closeMobileMenu}>
               About Us
+            </Link>
+            <Link
+              href="/portfolio"
+              className="block py-3 text-gray-700 hover:text-indigo-600 font-medium transition-colors border-b border-gray-100"
+              onClick={closeMobileMenu}>
+              Portfolio
             </Link>
             <Link
               href="/contactus"

@@ -58,7 +58,12 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "H&C Tech Solution",
-            alternateName: ["HC Tech", "HNCTechSolution", "hc tech", "H&C Tech"],
+            alternateName: [
+              "HC Tech",
+              "HNCTechSolution",
+              "hc tech",
+              "H&C Tech",
+            ],
             url: "https://hctechsolution.com",
             logo: "https://hctechsolution.com/ht-tech-logo-with-word.jpeg",
             description: "Professional web development services in Malaysia",
