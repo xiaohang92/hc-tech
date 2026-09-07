@@ -160,7 +160,7 @@ const InfoSection = () => {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className="group p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-indigo-200"
+              className="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:border-indigo-500/50 hover:shadow-lg"
             >
               <div className="inline-flex items-center justify-center w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                 <svg
@@ -190,7 +190,7 @@ const InfoSection = () => {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className="group p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-indigo-200"
+              className="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:border-indigo-500/50 hover:shadow-lg"
             >
               <div className="inline-flex items-center justify-center w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                 <svg
@@ -220,7 +220,7 @@ const InfoSection = () => {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className="group p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-indigo-200"
+              className="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:border-indigo-500/50 hover:shadow-lg"
             >
               <div className="inline-flex items-center justify-center w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                 <svg
@@ -249,7 +249,7 @@ const InfoSection = () => {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className="group p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-indigo-200"
+              className="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:border-indigo-500/50 hover:shadow-lg"
             >
               <div className="inline-flex items-center justify-center w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                 <svg

@@ -47,7 +47,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams: { name?: string };
+}) {
   return (
     <>
       <script
@@ -103,8 +107,14 @@ export default function Page() {
         }}
       />
       <div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <ProductSection />
+        <Suspense
+          fallback={
+            <div className="mx-auto max-w-screen-xl px-4 py-24 text-gray-700">
+              Loading package details…
+            </div>
+          }
+        >
+          <ProductSection initialName={searchParams.name} />
         </Suspense>
         <Footer />
       </div>

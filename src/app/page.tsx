@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HomeSection from "@/components/HomeSection";
+import PortfolioSection from "@/components/PortfolioSection";
 import PriceSection from "@/components/PriceSection";
 import InfoSection from "@/components/InfoSection";
 import Footer from "@/components/Footer";
@@ -140,6 +141,7 @@ export default function Home() {
       <main>
         <div className="flex flex-col">
           <HomeSection />
+          <PortfolioSection compact />
           <PriceSection />
           <InfoSection />
           <Footer />

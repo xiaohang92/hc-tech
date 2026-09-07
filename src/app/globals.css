@@ -1,3 +1,206 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --hc-indigo: #4f46e5;
+  --hc-ink: #111827;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--hc-ink);
+  background-color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--hc-indigo);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 80;
+  border-radius: 0.5rem;
+  background: #4f46e5;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 3rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  font-size: 1rem;
+  color: #111827;
+  background: #fff;
+  transition: border-color 160ms ease;
+}
+
+.field textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-color: rgb(99 102 241 / 0.5);
+}
+
+.field:has(:user-invalid) input,
+.field:has(:user-invalid) textarea {
+  border-color: #b91c1c;
+}
+
+.field:has(:user-valid) input,
+.field:has(:user-valid) textarea {
+  border-color: rgb(79 70 229 / 0.55);
+}
+
+.card-hover {
+  border-color: rgb(229 231 235);
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    translate 200ms ease;
+}
+
+.card-hover:hover {
+  border-color: rgb(99 102 241 / 0.5);
+}
+
+.nav-indicator {
+  position: absolute;
+  inset-block-end: -0.35rem;
+  inset-inline-start: var(--indicator-left, 0px);
+  width: var(--indicator-width, 0px);
+  height: 0.15rem;
+  border-radius: 999px;
+  background: #4f46e5;
+}
+
+@supports (anchor-name: --active-nav) {
+  .nav-indicator {
+    position-anchor: --active-nav;
+    inset-block-end: auto;
+    inset-block-start: calc(anchor(bottom) + 0.2rem);
+    inset-inline-start: anchor(left);
+    inset-inline-end: anchor(right);
+    width: auto;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-indicator {
+      transition: inset 200ms ease;
+    }
+  }
+}
+
+.nav-link-active {
+  color: #4338ca;
+}
+
+@supports (anchor-name: --active-nav) {
+  .nav-link-active {
+    anchor-name: --active-nav;
+  }
+}
+
+dialog.preview-dialog {
+  width: min(56rem, calc(100vw - 1.5rem));
+  max-height: min(90vh, 52rem);
+  padding: 0;
+  border: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #fff;
+  color: inherit;
+  box-shadow: 0 25px 50px -12px rgb(15 23 42 / 0.35);
+}
+
+dialog.preview-dialog::backdrop {
+  background: rgb(15 23 42 / 0.62);
+  backdrop-filter: blur(6px);
+}
+
+dialog.preview-dialog[open] {
+  animation: dialog-in 180ms ease-out;
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    scale: 0.97;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  z-index: 30;
+  width: 12rem;
+  height: 12rem;
+  translate: -50% -50%;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    rgb(99 102 241 / 0.08),
+    transparent 68%
+  );
+}
+
+@media (pointer: coarse) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .cursor-glow,
+  .nav-indicator {
+    display: none;
+  }
+
+  .animate-float,
+  .animate-float-delayed,
+  .animate-marquee,
+  .animate-pulse-ring {
+    animation: none !important;
+  }
+
+  dialog.preview-dialog[open] {
+    animation: none;
+  }
+}
