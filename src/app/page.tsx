@@ -66,7 +66,7 @@ export default function Home() {
               "H&C Tech",
             ],
             url: "https://hctechsolution.com",
-            logo: "https://hctechsolution.com/ht-tech-logo-with-word.jpeg",
+            logo: "https://hctechsolution.com/hc-tech-mark.png",
             description: "Professional web development services in Malaysia",
             address: {
               "@type": "PostalAddress",
