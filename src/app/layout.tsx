@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
+import CursorGlow from "@/components/CursorGlow";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -107,7 +109,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
@@ -138,9 +140,16 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#4f46e5" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-white text-gray-900 antialiased`}>
+        <a href="#content" className="skip-link">
+          Skip to content
+        </a>
         <NavBar />
-        <main className="pt-10">{children}</main>
+        <div id="content" tabIndex={-1} className="pt-[4.25rem] outline-none">
+          {children}
+        </div>
+        <WhatsAppWidget />
+        <CursorGlow />
         <Analytics />
       </body>
     </html>

@@ -1,139 +1,207 @@
-// src/components/NavBar.tsx
 "use client";
+
 import Image from "next/image";
 import logo from "/public/ht-tech-logo-with-word.jpeg";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+const NAV_LINKS = [
+  { href: "/", label: "Home", match: (path: string, hash: string) => path === "/" && hash !== "portfolio" && hash !== "pricing" },
+  { href: "/learnmore", label: "About Us", match: (path: string) => path.startsWith("/learnmore") },
+  { href: "/portfolio", label: "Portfolio", match: (path: string, hash: string) => path.startsWith("/portfolio") || hash === "portfolio" },
+  { href: "/#pricing", label: "Pricing", match: (_path: string, hash: string) => hash === "pricing" },
+  { href: "/contactus", label: "Contact", match: (path: string) => path.startsWith("/contactus") },
+];
 
 const NavBar: React.FC = () => {
+  const pathname = usePathname() || "/";
+  const [hash, setHash] = useState("");
+  const [isStuck, setIsStuck] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+  const listRef = useRef<HTMLUListElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash.replace("#", ""));
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const sections = ["portfolio", "pricing"].map((id) => document.getElementById(id));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) {
+          setHash(visible.target.id);
+        } else if (window.scrollY < 180) {
+          setHash("");
+        }
+      },
+      { rootMargin: "-35% 0px -50% 0px", threshold: [0.15, 0.35, 0.6] }
+    );
+
+    sections.forEach((section) => section && observer.observe(section));
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsStuck(!entry.isIntersecting),
+      { threshold: 1 }
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
+
+  useLayoutEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+    const active = list.querySelector<HTMLElement>("[data-active='true']");
+    if (!active) {
+      setIndicator({ left: 0, width: 0 });
+      return;
+    }
+    setIndicator({ left: active.offsetLeft, width: active.offsetWidth });
+  }, [pathname, hash, isMobileMenuOpen]);
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <>
-      <nav className="fixed top-0 z-10 flex w-full items-center justify-between bg-white/95 backdrop-blur-sm border-b border-gray-100 py-4 px-6 shadow-sm">
-        <Link
-          href="/"
-          className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
-          onClick={closeMobileMenu}>
-          <Image
-            src={logo}
-            width={140}
-            height={42}
-            alt="H&C Tech Solution Logo"
-            priority
-            className="w-auto h-10"
-          />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
+      <div ref={sentinelRef} className="h-px w-full" aria-hidden="true" />
+      <header
+        className={`fixed top-0 z-50 w-full transition-all duration-200 ${
+          isStuck
+            ? "border-b border-indigo-500/20 bg-white/75 shadow-sm backdrop-blur-xl"
+            : "border-b border-transparent bg-white/90 backdrop-blur-md"
+        }`}
+      >
+        <nav
+          className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-3 sm:px-6"
+          aria-label="Primary"
+        >
           <Link
             href="/"
-            className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">
-            Home
-          </Link>
-          <Link
-            href="/learnmore"
-            className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">
-            About Us
-          </Link>
-          <Link
-            href="/portfolio"
-            className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">
-            Portfolio
-          </Link>
-          <Link
-            href="/contactus"
-            className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">
-            Contact
-          </Link>
-        </div>
-
-        <div className="flex items-center space-x-4">
-          <Link
-            href="/contactus"
-            className="hidden sm:inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
-            Get Quote
+            className="flex items-center space-x-2 hover:opacity-80"
+            onClick={closeMobileMenu}
+          >
+            <Image
+              src={logo}
+              width={140}
+              height={42}
+              alt="H&C Tech Solution"
+              priority
+              className="h-10 w-auto"
+            />
           </Link>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle mobile menu">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24">
-              {isMobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
-        </div>
-      </nav>
+          <ul
+            ref={listRef}
+            className="relative hidden items-center gap-7 md:flex"
+          >
+            {NAV_LINKS.map((link) => {
+              const active = link.match(pathname, hash);
+              return (
+                <li key={link.href} data-active={active}>
+                  <Link
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`relative pb-1 text-sm font-medium transition-colors ${
+                      active
+                        ? "nav-link-active text-indigo-700"
+                        : "text-gray-700 hover:text-indigo-700"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+            <span
+              className="nav-indicator hidden md:block"
+              style={
+                {
+                  "--indicator-left": `${indicator.left}px`,
+                  "--indicator-width": `${indicator.width}px`,
+                } as React.CSSProperties
+              }
+              aria-hidden="true"
+            />
+          </ul>
 
-      {/* Mobile Navigation Menu */}
-      {isMobileMenuOpen && (
-        <div className="fixed top-20 left-0 right-0 z-10 bg-white border-b border-gray-100 shadow-lg md:hidden">
-          <div className="px-6 py-4 space-y-4">
-            <Link
-              href="/"
-              className="block py-3 text-gray-700 hover:text-indigo-600 font-medium transition-colors border-b border-gray-100"
-              onClick={closeMobileMenu}>
-              Home
-            </Link>
-            <Link
-              href="/learnmore"
-              className="block py-3 text-gray-700 hover:text-indigo-600 font-medium transition-colors border-b border-gray-100"
-              onClick={closeMobileMenu}>
-              About Us
-            </Link>
-            <Link
-              href="/portfolio"
-              className="block py-3 text-gray-700 hover:text-indigo-600 font-medium transition-colors border-b border-gray-100"
-              onClick={closeMobileMenu}>
-              Portfolio
-            </Link>
+          <div className="flex items-center gap-3">
             <Link
               href="/contactus"
-              className="block py-3 text-gray-700 hover:text-indigo-600 font-medium transition-colors border-b border-gray-100"
-              onClick={closeMobileMenu}>
-              Contact
+              className="hidden rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 sm:inline-flex"
+            >
+              Get Quote
             </Link>
-            <div className="pt-4">
-              <Link
-                href="/contactus"
-                className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors w-full justify-center"
-                onClick={closeMobileMenu}>
-                Get Quote
-              </Link>
-            </div>
+            <button
+              className="rounded-lg p-2 text-gray-700 hover:text-gray-900 md:hidden"
+              onClick={() => setIsMobileMenuOpen((open) => !open)}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-nav"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
-        </div>
-      )}
+        </nav>
+
+        {isMobileMenuOpen && (
+          <div
+            id="mobile-nav"
+            className="border-t border-gray-100 bg-white/95 px-4 py-4 shadow-lg backdrop-blur-xl md:hidden"
+          >
+            <ul className="space-y-1">
+              {NAV_LINKS.map((link) => {
+                const active = link.match(pathname, hash);
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      aria-current={active ? "page" : undefined}
+                      className={`block rounded-lg px-3 py-3 font-medium ${
+                        active
+                          ? "bg-indigo-50 text-indigo-800"
+                          : "text-gray-800 hover:bg-gray-50"
+                      }`}
+                      onClick={closeMobileMenu}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <Link
+              href="/contactus"
+              className="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-700"
+              onClick={closeMobileMenu}
+            >
+              Get Quote
+            </Link>
+          </div>
+        )}
+      </header>
     </>
   );
 };
+
 export default NavBar;
