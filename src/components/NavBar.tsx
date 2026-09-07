@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import logo from "/public/ht-tech-logo-with-word.jpeg";
+import BrandLogo from "@/components/BrandLogo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -91,17 +90,11 @@ const NavBar: React.FC = () => {
         >
           <Link
             href="/"
-            className="flex items-center space-x-2 hover:opacity-80"
+            className="flex items-center hover:opacity-80"
             onClick={closeMobileMenu}
+            aria-label="H&C Tech Solution home"
           >
-            <Image
-              src={logo}
-              width={140}
-              height={42}
-              alt="H&C Tech Solution"
-              priority
-              className="h-10 w-auto"
-            />
+            <BrandLogo priority />
           </Link>
 
           <ul

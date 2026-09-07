@@ -1,8 +1,7 @@
 // src/components/Footer.tsx
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import logo from "/public/ht-tech-logo-with-word-no-background.png";
+import BrandLogo from "@/components/BrandLogo";
 
 const Footer = () => {
   return (
@@ -12,14 +11,12 @@ const Footer = () => {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
             {/* Company Info */}
             <div className="lg:col-span-2">
-              <Link href="/" className="inline-block mb-6">
-                <Image
-                  src={logo}
-                  width={160}
-                  height={48}
-                  alt="H&C Tech Solution Logo"
-                  className="brightness-0 invert w-40 md:w-56 h-auto"
-                />
+              <Link
+                href="/"
+                className="mb-6 inline-block hover:opacity-90"
+                aria-label="H&C Tech Solution home"
+              >
+                <BrandLogo onDark />
               </Link>
               <p className="text-gray-300 mb-6 max-w-md">
                 We <strong className="text-white">transform businesses</strong>{" "}
