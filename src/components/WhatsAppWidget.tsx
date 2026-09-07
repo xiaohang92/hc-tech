@@ -3,18 +3,20 @@
 import { useEffect, useId, useRef, useState } from "react";
 
 const WHATSAPP_NUMBER = "601111266316";
+const WHATSAPP_DISPLAY = "6011-11266316";
+const WHATSAPP_CONTACT = "Calvin";
 const PRESET_MESSAGES = [
   {
     label: "Need a website quote",
-    text: "Hi H&C Tech, I would like a quote for a new website for my Malaysian business.",
+    text: "Hi Calvin, I would like a quote for a new website for my Malaysian business.",
   },
   {
     label: "Monthly support",
-    text: "Hi H&C Tech, I am looking for monthly retainer or support for an existing website.",
+    text: "Hi Calvin, I am looking for monthly retainer or support for an existing website.",
   },
   {
     label: "Talk in BM",
-    text: "Hai H&C Tech, saya berminat dengan perkhidmatan web development. Boleh bantu?",
+    text: "Hai Calvin, saya berminat dengan perkhidmatan web development. Boleh bantu?",
   },
 ];
 
@@ -54,18 +56,20 @@ const WhatsAppWidget = () => {
         hidden={!open}
         className="w-[min(20.5rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-emerald-500/30 bg-white shadow-2xl"
         role="dialog"
-        aria-label="WhatsApp enquiry"
+        aria-label="WhatsApp enquiry with Calvin"
       >
         <div className="bg-[#075e54] px-4 py-3 text-white">
-          <p className="text-sm font-semibold">H&C Tech Solution</p>
+          <p className="text-sm font-semibold">
+            {WHATSAPP_CONTACT} · H&C Tech Solution
+          </p>
           <p className="text-xs text-emerald-100">
-            Typically replies within office hours · MYT
+            WhatsApp {WHATSAPP_DISPLAY} · typically replies in MYT office hours
           </p>
         </div>
         <div className="space-y-3 bg-[#ece5dd] px-3 py-3">
           <p className="max-w-[90%] rounded-lg rounded-tl-sm bg-white px-3 py-2 text-sm text-gray-800 shadow-sm">
-            Hi! Need a high-performance site for your Malaysian business? Chat
-            with Calvin or Chuah on WhatsApp.
+            Hi! Chat with {WHATSAPP_CONTACT} on WhatsApp at {WHATSAPP_DISPLAY}{" "}
+            for a high-performance site for your Malaysian business.
           </p>
           <ul className="space-y-2">
             {PRESET_MESSAGES.map((preset) => (
@@ -90,7 +94,11 @@ const WhatsAppWidget = () => {
         className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={open ? "Close WhatsApp chat" : "Open WhatsApp chat"}
+        aria-label={
+          open
+            ? "Close WhatsApp chat"
+            : `Chat with ${WHATSAPP_CONTACT} on WhatsApp ${WHATSAPP_DISPLAY}`
+        }
       >
         <span className="absolute inset-0 animate-pulse-ring rounded-full bg-[#25D366]" />
         {open ? (
