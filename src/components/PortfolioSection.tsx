@@ -13,9 +13,13 @@ import {
 
 type PortfolioSectionProps = {
   compact?: boolean;
+  hideIntro?: boolean;
 };
 
-const PortfolioSection = ({ compact = false }: PortfolioSectionProps) => {
+const PortfolioSection = ({
+  compact = false,
+  hideIntro = false,
+}: PortfolioSectionProps) => {
   const [filter, setFilter] = useState<ProjectFilter>("All");
   const [active, setActive] = useState<Project | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -68,9 +72,10 @@ const PortfolioSection = ({ compact = false }: PortfolioSectionProps) => {
   return (
     <section
       id="portfolio"
-      className={`scroll-mt-24 bg-white ${compact ? "py-16" : "py-20 pt-24"}`}
+      className={`scroll-mt-24 bg-white ${compact ? "py-16" : hideIntro ? "pb-20 pt-4" : "py-20 pt-24"}`}
     >
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        {!hideIntro && (
         <div className="mx-auto mb-10 max-w-3xl text-center">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-5xl">
             Work that converts
@@ -80,6 +85,7 @@ const PortfolioSection = ({ compact = false }: PortfolioSectionProps) => {
             card for metrics, stack, and a preview.
           </p>
         </div>
+        )}
 
         <div
           role="tablist"

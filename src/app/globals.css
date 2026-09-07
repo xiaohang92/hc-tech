@@ -37,6 +37,50 @@ body {
   top: 1rem;
 }
 
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 3rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  font-size: 1rem;
+  color: #111827;
+  background: #fff;
+  transition: border-color 160ms ease;
+}
+
+.field textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-color: rgb(99 102 241 / 0.5);
+}
+
+.field:has(:user-invalid) input,
+.field:has(:user-invalid) textarea {
+  border-color: #b91c1c;
+}
+
+.field:has(:user-valid) input,
+.field:has(:user-valid) textarea {
+  border-color: rgb(79 70 229 / 0.55);
+}
+
 .card-hover {
   border-color: rgb(229 231 235);
   transition:

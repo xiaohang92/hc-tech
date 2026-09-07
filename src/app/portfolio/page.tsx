@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import React from "react";
 import PortfolioSection from "@/components/PortfolioSection";
+import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -83,7 +84,14 @@ const Portfolio = () => {
       />
       <main>
         <div className="flex flex-col">
-          <PortfolioSection />
+          <PageHero
+            eyebrow="Portfolio"
+            title="Work that converts for Malaysian businesses"
+            description="Filter live sites and capability case studies. Open a card for metrics, stack, and a preview — then talk to Calvin about a similar build."
+            primaryCta={{ href: "/contactus", label: "Start a similar project" }}
+            secondaryCta={{ href: "/#pricing", label: "View pricing" }}
+          />
+          <PortfolioSection hideIntro />
           <Footer />
         </div>
       </main>

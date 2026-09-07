@@ -115,6 +115,12 @@ const Footer = () => {
                 <div>
                   <p className="font-medium">Mr. Calvin</p>
                   <a
+                    href="https://wa.me/601111266316"
+                    className="block hover:text-white transition-colors"
+                  >
+                    WhatsApp 6011-11266316
+                  </a>
+                  <a
                     href="tel:+6011-11266316"
                     className="hover:text-white transition-colors"
                   >

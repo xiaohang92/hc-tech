@@ -1,9 +1,16 @@
 "use client";
-// src/components/ContactUs.tsx
+
 import React, { useState } from "react";
-import PopUpAlert from "./PopUpAlert"; // Adjust the import path if necessary
-import ErrorAlert from "./ErrorAlert"; // Adjust the import path if necessary
-import { motion } from "framer-motion";
+import PopUpAlert from "./PopUpAlert";
+import ErrorAlert from "./ErrorAlert";
+import { motion, useReducedMotion } from "framer-motion";
+import PageHero from "@/components/PageHero";
+
+const WHATSAPP_HREF =
+  "https://wa.me/601111266316?text=" +
+  encodeURIComponent(
+    "Hi Calvin, I would like to discuss a web project for my Malaysian business."
+  );
 
 const ContactUs = () => {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
@@ -11,10 +18,7 @@ const ContactUs = () => {
   const [alertVisible, setAlertVisible] = useState(false);
   const [errorVisible, setErrorVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-  const handleProductSelect = (product: string) => {
-    setSelectedProduct(product);
-  };
+  const reduceMotion = useReducedMotion();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,290 +33,212 @@ const ContactUs = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error("Error:", errorData.error);
         setErrorMessage(
           errorData.error || "Failed to send enquiry. Please try again."
-        ); // Set the error message
-        setErrorVisible(true); // Show the error alert
+        );
+        setErrorVisible(true);
       } else {
-        setAlertVisible(true); // Show the success alert
+        setAlertVisible(true);
       }
-    } catch (error) {
-      console.error("Error:", error);
-      setErrorMessage("An unexpected error occurred. Please try again."); // Set the error message
-      setErrorVisible(true); // Show the error alert
+    } catch {
+      setErrorMessage("An unexpected error occurred. Please try again.");
+      setErrorVisible(true);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleCloseAlert = () => {
-    setAlertVisible(false);
-  };
-
-  const handleCloseError = () => {
-    setErrorVisible(false);
-  };
-
   return (
-    <section className="bg-gray-100 pt-8">
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-2 lg:py-12"
-          >
-            <h2 className="text-3xl font-bold sm:text-4xl">
-              Ready to Get Started?
-            </h2>
-            <p className="max-w-xl text-lg">
-              <strong>Contact us</strong> to discuss your{" "}
-              <strong className="text-indigo-700">web development</strong>{" "}
-              needs. Whether you need a{" "}
-              <strong className="text-indigo-700">landing page</strong>, a{" "}
-              <strong className="text-indigo-700">full website</strong>, or a
-              custom <strong className="text-indigo-700">WordPress</strong>{" "}
-              solution, we are here to help you{" "}
-              <strong className="text-indigo-700">
-                bring your vision to life
-              </strong>{" "}
-              with expert precision and creativity.
-            </p>
+    <>
+      <PageHero
+        eyebrow="Contact · Butterworth, Penang"
+        title="Tell us the outcome. We will map the build."
+        description="Share your timeline and budget. Calvin replies on WhatsApp at 6011-11266316, or use the form — typically within Malaysian office hours."
+        primaryCta={{ href: WHATSAPP_HREF, label: "WhatsApp Calvin" }}
+        secondaryCta={{ href: "tel:+601111266316", label: "Call 6011-11266316" }}
+      />
 
-            <div className="mt-8 space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                <a
-                  href="tel:+6011-11266316"
-                  className="text-2xl font-bold text-pink-600 hover:text-pink-700 transition-colors">
-                  +6011-11266316
-                </a>
-                <span className="text-gray-600 font-medium text-lg">
-                  (Mr. Calvin)
-                </span>
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                <a
-                  href="tel:+6012-5261536"
-                  className="text-2xl font-bold text-pink-600 hover:text-pink-700 transition-colors">
-                  +6012-5261536
-                </a>
-                <span className="text-gray-600 font-medium text-lg">
-                  (Mr. Chuah)
-                </span>
-              </div>
-
-              {/* Email */}
-              <div className="pt-2">
+      <section className="bg-white pb-20">
+        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-5">
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-4 lg:col-span-2"
+            >
+              <a
+                href={WHATSAPP_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-2xl border border-gray-200 bg-white p-5 transition-colors hover:border-indigo-500/50"
+              >
+                <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">
+                  Fastest reply
+                </p>
+                <p className="mt-1 text-xl font-bold text-gray-900">
+                  WhatsApp Calvin
+                </p>
+                <p className="text-gray-700">6011-11266316</p>
+              </a>
+              <a
+                href="tel:+60125261536"
+                className="block rounded-2xl border border-gray-200 p-5 hover:border-indigo-500/50"
+              >
+                <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">
+                  Also available
+                </p>
+                <p className="mt-1 text-lg font-bold text-gray-900">Mr. Chuah</p>
+                <p className="text-gray-700">+6012-5261536</p>
+              </a>
+              <div className="rounded-2xl border border-gray-200 p-5 hover:border-indigo-500/50">
+                <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">
+                  Email
+                </p>
                 <a
                   href="mailto:calvin@hctechsolution.com"
-                  className="text-lg font-bold text-indigo-700 hover:text-indigo-800 transition-colors block mb-2">
+                  className="mt-2 block font-semibold text-indigo-800 hover:text-indigo-900"
+                >
                   calvin@hctechsolution.com
                 </a>
                 <a
                   href="mailto:weihang@hctechsolution.com"
-                  className="text-lg font-bold text-indigo-700 hover:text-indigo-800 transition-colors block">
+                  className="mt-1 block font-semibold text-indigo-800 hover:text-indigo-900"
+                >
                   weihang@hctechsolution.com
                 </a>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12"
-          >
-            <form onSubmit={handleSubmit} method="post" className="space-y-6">
-              <div>
-                <label
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                  htmlFor="name">
-                  Name
-                </label>
-                <input
-                  className="w-full rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none hover:border-gray-300"
-                  placeholder="Your Name"
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                />
-              </div>
-
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div>
-                  <label
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                    htmlFor="email">
-                    Email
-                  </label>
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:border-indigo-500/50 lg:col-span-3 lg:p-10"
+            >
+              <h2 className="text-2xl font-bold text-gray-900">
+                Project enquiry
+              </h2>
+              <p className="mt-2 text-gray-700">
+                All fields required. We use this to prepare a scoped quote.
+              </p>
+              <form
+                onSubmit={handleSubmit}
+                method="post"
+                action="/api/send"
+                className="mt-6 space-y-5"
+                noValidate={false}
+              >
+                <div className="field">
+                  <label htmlFor="name">Name</label>
                   <input
-                    className="w-full rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none hover:border-gray-300"
-                    placeholder="Your Email Address"
-                    type="email"
-                    id="email"
-                    name="email"
+                    id="name"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
                     required
+                    placeholder="Your name"
+                  />
+                </div>
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                  <div className="field">
+                    <label htmlFor="email">Email</label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      placeholder="you@company.com"
+                    />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="phone">Phone</label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      inputMode="tel"
+                      required
+                      placeholder="01x-xxxxxxx"
+                    />
+                  </div>
+                </div>
+
+                <fieldset>
+                  <legend className="mb-3 text-sm font-semibold text-gray-700">
+                    Product interest
+                  </legend>
+                  <div className="grid grid-cols-1 gap-3 text-center sm:grid-cols-3">
+                    {(
+                      [
+                        ["LandingPage", "Landing Page"],
+                        ["FullWebsite", "Full Website"],
+                        ["WordPress", "WordPress"],
+                      ] as const
+                    ).map(([value, label]) => (
+                      <label
+                        key={value}
+                        htmlFor={value}
+                        className={`block cursor-pointer rounded-lg border-2 p-3 text-sm font-medium transition-colors ${
+                          selectedProduct === value
+                            ? "border-indigo-600 bg-indigo-50 text-indigo-800"
+                            : "border-gray-200 hover:border-indigo-500/50"
+                        }`}
+                      >
+                        <input
+                          className="sr-only"
+                          id={value}
+                          type="radio"
+                          name="product"
+                          value={value}
+                          required
+                          onChange={() => setSelectedProduct(value)}
+                        />
+                        {label}
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+
+                <div className="field">
+                  <label htmlFor="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={6}
+                    placeholder="Goals, timeline, and anything we should know."
                   />
                 </div>
 
-                <div>
-                  <label
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                    htmlFor="phone">
-                    Phone
-                  </label>
-                  <input
-                    className="w-full rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none hover:border-gray-300"
-                    placeholder="Your Phone Number"
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Product Interest
-                </label>
-                <div className="grid grid-cols-1 gap-3 text-center sm:grid-cols-3">
-                  <div>
-                    <label
-                      htmlFor="LandingPage"
-                      className={`block w-full cursor-pointer rounded-lg border-2 p-3 transition-all duration-200 ${
-                        selectedProduct === "LandingPage"
-                          ? "bg-indigo-50 border-indigo-500 text-indigo-700 shadow-md"
-                          : "border-gray-200 hover:border-indigo-300 hover:bg-gray-50"
-                      }`}
-                      onClick={() => handleProductSelect("LandingPage")}>
-                      <input
-                        className="sr-only"
-                        id="LandingPage"
-                        type="radio"
-                        name="product"
-                        value="LandingPage"
-                        required
-                      />
-                      <span className="text-sm font-medium">Landing Page</span>
-                    </label>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="FullWebsite"
-                      className={`block w-full cursor-pointer rounded-lg border-2 p-3 transition-all duration-200 ${
-                        selectedProduct === "FullWebsite"
-                          ? "bg-indigo-50 border-indigo-500 text-indigo-700 shadow-md"
-                          : "border-gray-200 hover:border-indigo-300 hover:bg-gray-50"
-                      }`}
-                      onClick={() => handleProductSelect("FullWebsite")}>
-                      <input
-                        className="sr-only"
-                        id="FullWebsite"
-                        type="radio"
-                        name="product"
-                        value="FullWebsite"
-                        required
-                      />
-                      <span className="text-sm font-medium">Full Website</span>
-                    </label>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="WordPress"
-                      className={`block w-full cursor-pointer rounded-lg border-2 p-3 transition-all duration-200 ${
-                        selectedProduct === "WordPress"
-                          ? "bg-indigo-50 border-indigo-500 text-indigo-700 shadow-md"
-                          : "border-gray-200 hover:border-indigo-300 hover:bg-gray-50"
-                      }`}
-                      onClick={() => handleProductSelect("WordPress")}>
-                      <input
-                        className="sr-only"
-                        id="WordPress"
-                        type="radio"
-                        name="product"
-                        value="WordPress"
-                        required
-                      />
-                      <span className="text-sm font-medium">WordPress</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <label
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                  htmlFor="message">
-                  Message
-                </label>
-                <textarea
-                  className="w-full rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none hover:border-gray-300 resize-none"
-                  placeholder="Tell us about your project requirements..."
-                  rows={6}
-                  id="message"
-                  name="message"
-                  required></textarea>
-              </div>
-
-              <div className="pt-2">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                <button
                   type="submit"
-                  className="inline-block w-full rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-3 font-medium text-white transition-all duration-200 hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? (
-                    <span className="flex items-center justify-center">
-                      <svg
-                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24">
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"></circle>
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Sending...
-                    </span>
-                  ) : (
-                    "Send Enquiry"
-                  )}
-                </motion.button>
-              </div>
-            </form>
-            {alertVisible && (
-              <PopUpAlert
-                title="Success"
-                content="Your enquiry has been sent successfully!"
-                onClose={handleCloseAlert}
-              />
-            )}
-            {errorVisible && (
-              <ErrorAlert message={errorMessage} onClose={handleCloseError} />
-            )}
-          </motion.div>
+                  {isSubmitting ? "Sending..." : "Send enquiry"}
+                </button>
+              </form>
+              {alertVisible && (
+                <PopUpAlert
+                  title="Success"
+                  content="Your enquiry has been sent successfully!"
+                  onClose={() => setAlertVisible(false)}
+                />
+              )}
+              {errorVisible && (
+                <ErrorAlert
+                  message={errorMessage}
+                  onClose={() => setErrorVisible(false)}
+                />
+              )}
+            </motion.div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
