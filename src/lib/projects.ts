@@ -42,24 +42,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "moesie",
-    title: "Moesie Corporate Website",
-    client: "Moesie",
-    category: "Business & Corporate",
-    filters: ["WordPress"],
-    description:
-      "A professional services site with clear service architecture, enquiry-led CTAs, and performance work that keeps the brand looking premium on every device.",
-    image: "/moesie-my-11-30-2025_02_28_PM.png",
-    type: "WordPress",
-    url: "https://moesie.my",
-    stack: ["WordPress", "Custom theme", "Analytics"],
-    metrics: [
-      { label: "Enquiries", value: "+52%" },
-      { label: "PageSpeed", value: "99" },
-      { label: "Delivery", value: "3 weeks" },
-    ],
-  },
-  {
     id: "ops-portal",
     title: "Inventory & Orders Portal",
     client: "Confidential · Penang SME",
