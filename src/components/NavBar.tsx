@@ -33,19 +33,18 @@ const NavBar: React.FC = () => {
   useEffect(() => {
     if (pathname !== "/") return;
 
-    const sections = ["portfolio", "pricing"].map((id) => document.getElementById(id));
+    const sections = ["home", "portfolio", "pricing"]
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section));
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) {
-          setHash(visible.target.id);
-        } else if (window.scrollY < 180) {
-          setHash("");
-        }
+        if (!visible) return;
+        setHash(visible.target.id === "home" ? "" : visible.target.id);
       },
-      { rootMargin: "-35% 0px -50% 0px", threshold: [0.15, 0.35, 0.6] }
+      { rootMargin: "-22% 0px -58% 0px", threshold: [0.1, 0.35, 0.6] }
     );
 
     sections.forEach((section) => section && observer.observe(section));

@@ -108,13 +108,9 @@ const PortfolioSection = ({ compact = false }: PortfolioSectionProps) => {
         </div>
 
         <AnimatePresence mode="popLayout">
-          <motion.div
-            layout
-            className="grid grid-cols-1 gap-6 md:grid-cols-2"
-          >
+          <motion.div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {visible.map((project) => (
               <motion.article
-                layout
                 key={project.id}
                 initial={reduceMotion ? false : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
