@@ -47,7 +47,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams: { name?: string };
+}) {
   return (
     <>
       <script
@@ -110,7 +114,7 @@ export default function Page() {
             </div>
           }
         >
-          <ProductSection />
+          <ProductSection initialName={searchParams.name} />
         </Suspense>
         <Footer />
       </div>

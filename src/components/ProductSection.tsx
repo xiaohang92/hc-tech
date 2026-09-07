@@ -10,14 +10,19 @@ import ErrorAlert from "./ErrorAlert";
 import { getProductByName, products } from "@/lib/products";
 import { motion, useReducedMotion } from "framer-motion";
 
-export default function ProductSection() {
+export default function ProductSection({
+  initialName,
+}: {
+  initialName?: string;
+}) {
   const [alertVisible, setAlertVisible] = useState(false);
   const [errorVisible, setErrorVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [clientName, setClientName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const searchParams = useSearchParams();
-  const name = searchParams?.get("name") || "Landing Page Development";
+  const name =
+    searchParams?.get("name") || initialName || "Landing Page Development";
   const status = searchParams?.get("status") || "";
   const product = getProductByName(name);
   const reduceMotion = useReducedMotion();
