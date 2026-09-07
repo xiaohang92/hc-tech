@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from "framer-motion";
 
 const CLIENTS = [
   "Eastmate Coffee",
-  "Moesie",
   "Penang Retail",
   "Klang Valley Ops",
   "F&B Groups",

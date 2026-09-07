@@ -70,13 +70,6 @@ const Portfolio = () => {
                     "A modern WordPress e-commerce website for a coffee business",
                   url: "https://eastmatecoffee.com",
                 },
-                {
-                  "@type": "CreativeWork",
-                  name: "Moesie Corporate Website",
-                  description:
-                    "A professional WordPress website showcasing business services",
-                  url: "https://moesie.my",
-                },
               ],
             },
           }),
